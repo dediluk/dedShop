@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    {% for post in posts%}
+    {% if post.draft != True %}
+    {% if forloop.counter0|divisibleby:4 and not forloop.first %}
+    <div class="w-100"></div>
+    {% endif %}
+    <!-- justify-content-around-->
+    <div class="col-lg d-flex post-preview">
+
+
+        <div class="post-content">
+            <h6 class="post-preview-title">{{post.title}}<br></h6>
+            <p class="post-preview-text hide">{{post.text}}</p>
+        </div>
+        <script src="{% static 'js/short_text_for_preview.js' %}"></script>
+        <script src="{% static 'js/make_preview_more_colorful.js' %}"></script>
+
+    </div>
+    {% endif %}
+    {% endfor %}
+
+</div>
+
+
+{% endblock%}

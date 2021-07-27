@@ -1,0 +1,18 @@
+.post-preview {
+    width: 250px;
+    height: 150px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border: 1px solid grey;
+    border-radius: 6px;
+}
+
+.post-preview-title{
+    border-bottom: 1px solid grey;
+    border-bottom-width: thin;
+}
+
+.hide {
+    display: none;
+    background-color: #0a58ca;
+}
