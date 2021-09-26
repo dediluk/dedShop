@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Каталог
+{% endblock %}
+
+{% block content %}
+
+    {% for product in products %}
+        <a href="{% url 'product_details'  product.slug%}" class="product_details">
+            {{ product }}<br>
+            {{ product.description }}<br>
+        </a>
+    {% endfor %}
+
+{% endblock %}

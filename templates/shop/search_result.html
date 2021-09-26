@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Результаты поиск {% endblock %}
+
+{% block content %}
+    {% for product in search_result %}
+        <a href="{% url 'product_details'  product.slug %}" class="product_details">
+            {{ product }}<br>
+            {{ product.description }}<br>
+        </a>
+    {% endfor %}
+{% endblock %}
