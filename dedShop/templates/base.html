@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+{% if  not request.user.is_authenticated %}
+    <a href="{% url 'loginUser' %}">Вход</a>
+    <a href="{% url 'signupUser' %}">Регистрация</a>
+{% else %}
+    <a href="{% url 'logoutUser' %}" methods="POST">Выход</a>
+    {{ request.user.username }}
+{% endif %}
+
+<p class="main_page"><a href="{% url 'index' %}">Главная</a></p>
+<form action="{% url 'search_result'%}" class="form-inline my-2 my-lg-0" method="get">
+    {% csrf_token %}
+    <input name='search' class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Поиск</button>
+</form>
+
+<br>
+
+
+{% block content %}
+{% endblock %}
+</body>
+</html>
