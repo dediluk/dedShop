@@ -51,5 +51,37 @@ class Product(models.Model):
         verbose_name_plural = "Товары"
 
 
-# class ProductAdmin(admin.ModelAdmin):
-#     list_display = ('title', 'manufacturer', 'availability', 'price')
+class Order(models.Model):
+    first_name = models.CharField(verbose_name='Имя', max_length=50)
+    last_name = models.CharField(verbose_name='Фамилия', max_length=50)
+    email = models.EmailField()
+    address = models.CharField(verbose_name='Адрес', max_length=250)
+    postal_code = models.CharField(verbose_name='Индекс', max_length=20)
+    city = models.CharField(verbose_name='Город', max_length=100)
+    created = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
+    updated = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
+    paid = models.BooleanField(verbose_name='Оплачен', default=False)
+
+    class Meta:
+        ordering = ('-created',)
+        verbose_name = 'Заказ'
+        verbose_name_plural = 'Заказы'
+
+    def __str__(self):
+        return 'Order {}'.format(self.id)
+
+    def get_total_cost(self):
+        return sum(item.get_cost() for item in self.items.all())
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, verbose_name='Заказ', related_name='items', on_delete=models.DO_NOTHING)
+    product = models.ForeignKey(Product, verbose_name='Товар', related_name='order_items', on_delete=models.DO_NOTHING)
+    price = models.DecimalField(max_digits=10, verbose_name='Цена', decimal_places=2)
+    quantity = models.PositiveIntegerField(verbose_name='Количество', default=1)
+
+    def __str__(self):
+        return '{}'.format(self.id)
+
+    def get_cost(self):
+        return self.price * self.quantity

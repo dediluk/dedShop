@@ -21,6 +21,7 @@ class Cart(object):
             self.cart[product_id]['quantity'] = quantity
         else:
             self.cart[product_id]['quantity'] += quantity
+        self.save()
 
     def save(self):
         self.session[settings.CART_SESSION_ID] = self.cart
@@ -34,7 +35,6 @@ class Cart(object):
 
     def __iter__(self):
         product_ids = self.cart.keys()
-                # получение объектов product и добавление их в корзину
         products = Product.objects.filter(id__in=product_ids)
         for product in products:
             self.cart[str(product.id)]['product'] = product
@@ -44,8 +44,6 @@ class Cart(object):
             item['total_price'] = item['price'] * item['quantity']
             yield item
 
-            # https://pocoz.gitbooks.io/django-v-primerah/content/glava-7-sozdanie-internet-magazina/sozdanie-korzini/hranenie-korzini-pokupok-v-sessiyah.html
-
     def __len__(self):
         return sum(item['quantity'] for item in self.cart.values())
 
@@ -53,6 +51,9 @@ class Cart(object):
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
 
     def clear(self):
-                # удаление корзины из сессии
         del self.session[settings.CART_SESSION_ID]
         self.session.modified = True
+
+
+def cart(request):
+    return {'cart': Cart(request)}

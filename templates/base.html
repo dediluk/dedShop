@@ -12,9 +12,13 @@
     <a href="{% url 'logoutUser' %}" methods="POST">Выход</a>
     {{ request.user.username }}
 {% endif %}
+
 {% if user.groups.all.0.name == 'Магазин' or user.is_admin %}
     <a href="{% url 'product_create' %}">Добавить товар</a>
 {% endif %}
+
+<a href="{% url 'cart_detail' %}">Корзина</a>
+
 <p class="main_page"><a href="{% url 'index' %}">Главная</a></p>
 <form action="{% url 'search_result' %}" class="form-inline my-2 my-lg-0" method="get">
     {% csrf_token %}
