@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Добавление товара товара {% endblock %}
+
+{% block content %}
+    {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+    <form method="POST">
+        <h2> Добавление товара</h2>
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit">Добавить</button>
+    </form>
+{% endblock %}
