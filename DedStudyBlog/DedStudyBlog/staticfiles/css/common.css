@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'NotoSans-Regular';
+    src: local('NotoSans-Regular'),
+    url('../fonts/NotoSans-Regular.ttf') format("truetype");
+}
+
+.body {
+    font-family: NotoSans-Regular;
+}
+
 .post-preview {
     width: 250px;
     height: 150px;
@@ -5,14 +15,136 @@
     margin-right: 25px;
     border: 1px solid grey;
     border-radius: 6px;
+    overflow: hidden;
+    -moz-transition: transform 1s;
+    -webkit-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+    transition-duration: 0.5s;
 }
 
-.post-preview-title{
+
+.post-preview:hover {
+    cursor: pointer;
+    /*-webkit-transform: scale(1.1);*/
+    /*-ms-transform: scale(1.1);*/
+    /*transform: scale(1.1);*/
+}
+
+
+.post-preview-title {
     border-bottom: 1px solid grey;
     border-bottom-width: thin;
 }
 
+.post-preview-text {
+    font-size: 1.7vh;
+    /*text-align: justify;*/
+}
+
+
 .hide {
     display: none;
     background-color: #0a58ca;
+}
+
+.show {
+    background: rgba(102, 102, 102, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+.close {
+    display: inline-block;
+    border: 1px solid #0000cc;
+    color: #0000cc;
+    padding: 0 12px;
+    margin: 10px;
+    text-decoration: none;
+    background: #f2f2f2;
+    font-size: 14pt;
+    cursor: pointer;
+}
+
+.close:hover {
+    background: #e6e6ff;
+}
+
+
+.pop-up-window {
+    padding: 15px;
+    /*position: relative;*/
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    display: inline-block;
+    /*background-color: red;*/
+    color: white;
+    max-width: 65vh;
+    max-height: 61vh;
+    border-radius: 6px;
+}
+
+
+.post-view-text {
+    text-align: justify;
+    font-size: 1.6vh;
+}
+
+
+.post__close {
+    text-align: right;
+    float: right;
+    position: absolute;
+    top: 8px;
+    right: 14px;
+    font-size: 30px;
+    color: #000;
+    opacity: .5;
+    font-weight: 700;
+    border: none;
+    background-color: transparent;
+    cursor: pointer
+}
+
+.post-date {
+    font-size: 1.5vh;
+    opacity: 0.5;
+    bottom: 0px;
+    position: absolute;
+    right: 0px;
+    margin-right: 25px;
+    margin-bottom: 10px;
+}
+
+
+.red_block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -moz-transition: transform 1s;
+    -webkit-transition: transform 1s;
+    -ms-transition: transform 1s;
+    -o-transition: transform 1s;
+    transition: transform 1s;
+    transition-duration: 0.5s;
+    height: 100px;
+    width: 100px;
+    background-color: red;
+}
+
+div.red_block {
+    -webkit-transition: all 1.0s ease-in-out;
+    -moz-transition: all 1.0s ease-in-out;
+    -o-transition: all 1.0s ease-in-out;
+    -ms-transition: all 1.0s ease-in-out;
+    transition: all 1.0s ease-in-out;
 }

@@ -1,12 +1,20 @@
 {% load static %}
 
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/js/bootstrap.js' %}">
+    <link rel="stylesheet" type="text/js" href="{% static 'bootstrap/js/bootstrap.js' %}">
+    <style>
+        @font-face {
+            font-family: 'NotoSans-Regular';
+            src: local('NotoSans-Regular'),
+            url("{% static 'fonts/NotoSans-Regular.ttf' %} format('truetype')");
+        }
+    </style>
+
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock %}</title>
 </head>
@@ -32,13 +40,17 @@
             <button type="button" class="btn btn-primary">Регистрация</button>
         </div>
     </header>
-     <div class="content d-flex flex-wrap justify-content-center">
+    <div class="content d-flex flex-wrap justify-content-center">
         {% block content%}
         {% endblock %}
     </div>
+    <div class="red_block">a</div>
 
 
-
+    <script src="{% static 'js/short_text_for_preview.js' %}"></script>
+    <script src="{% static 'js/make_preview_more_colorful.js' %}"></script>
+<!--    <script src="{% static 'js/post_view.js' %}"></script>-->
+    <script src="{% static 'js/move_to_center.js' %}"></script>
 </div>
 
 </body>

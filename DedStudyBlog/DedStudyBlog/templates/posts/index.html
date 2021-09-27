@@ -6,6 +6,18 @@
 {% endblock %}
 
 {% block content %}
+<!-- -->
+<div class="hide post-view">
+    <div class="pop-up-window">
+        <div class="post__close" data-close>&times;</div>
+        <h2 class="post-view-title"></h2>
+        <p class="post-view-text"></p>
+        <div class="post-date-div">
+            <p class="post-date">abra</p>
+        </div>
+    </div>
+</div>
+
 
 <div class="row">
     {% for post in posts%}
@@ -19,10 +31,10 @@
 
         <div class="post-content">
             <h6 class="post-preview-title">{{post.title}}<br></h6>
-            <p class="post-preview-text hide">{{post.text}}</p>
+            <p class="post-preview-text hide" data-post-text='{{post.text}}'>{{post.text}}</p>
+            <p class="hide date">{{post.date}}</p>
         </div>
-        <script src="{% static 'js/short_text_for_preview.js' %}"></script>
-        <script src="{% static 'js/make_preview_more_colorful.js' %}"></script>
+
 
     </div>
     {% endif %}

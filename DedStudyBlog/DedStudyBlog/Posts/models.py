@@ -1,5 +1,4 @@
 from django.db import models
-from autoslug import AutoSlugField
 from pytils.translit import slugify
 import datetime
 
