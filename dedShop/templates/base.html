@@ -13,8 +13,14 @@
     {{ request.user.username }}
 {% endif %}
 
+{% if user.groups.all.0.name == 'Магазин' or user.is_admin %}
+    <a href="{% url 'product_create' %}">Добавить товар</a>
+{% endif %}
+
+<a href="{% url 'cart_detail' %}">Корзина</a>
+
 <p class="main_page"><a href="{% url 'index' %}">Главная</a></p>
-<form action="{% url 'search_result'%}" class="form-inline my-2 my-lg-0" method="get">
+<form action="{% url 'search_result' %}" class="form-inline my-2 my-lg-0" method="get">
     {% csrf_token %}
     <input name='search' class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Поиск</button>

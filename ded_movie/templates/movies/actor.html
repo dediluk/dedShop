@@ -1,0 +1,56 @@
+{% extends 'movies/base.html' %}
+{% load static %}
+{% block title %}
+    {{ actors.name }}
+{% endblock title %}
+
+{% block container %}
+    <div class="container py-md-3">
+{% endblock container %}
+
+{% block sidebar %}
+    <div class="side-bar col-lg-4">
+{% endblock sidebar %}
+
+{% block movie %}
+    <div class="left-ads-display col-lg-8">
+        <div class="row">
+            <div class="desc1-left col-md-6">
+                <img src="{{ actors.image.url }}" class="img-fluid" alt="">
+            </div>
+            <div class="desc1-right col-md-6 pl-lg-4">
+                <h3 class="editContent" style="outline: none; cursor: inherit;">
+                    {{ actors.name }}</h3>
+                <ul>
+                    <li style="list-style: none"><span><b>Возраст:</b> {{ actors.age }}</span></li>
+                    <li style="list-style: none"><span><b>Страна:</b> {{ actors.id }}</span>
+                    </li>
+                    <li style="list-style: none"><span><b>Актер:</b>
+                        {% for movie in actors.film_actor.all %} #Фильмы,которые связаны related_name
+                            <a href="{{ movie.get_absolute_url }}">{{ movie.title }}</a>
+                        {% endfor %}
+                                </span>
+                    </li>
+                    <li style="list-style: none"><span><b>Режиссер:</b>
+                        {% for movie in actors.film_director.all %}
+                            <a href="{{ movie.get_absolute_url }}">{{ movie.title }}</a>
+                        {% endfor %}
+                                </span>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+        <div class="row sub-para-w3layouts mt-5">
+
+            <h3 class="shop-sing editContent" style="outline: none; cursor: inherit;">
+                О {{ actors.name }}</h3>
+            <p>
+                {{ actors.description }}
+
+            </p>
+        </div>
+    </div>
+
+{% endblock movie %}

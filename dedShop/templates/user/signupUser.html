@@ -34,6 +34,11 @@
                     <label for="password">Повторите пароль</label>
                     <input type="password" name="password2" class="form-control" id="password2">
                 </div>
+{#                <select name="user_group" id="user_group">#}
+{#                    {% for group in groups %}#}
+{#                        <option value={{ group }}> {{ group }} </option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary">Регистрация</button>
                 </div>
@@ -42,6 +47,7 @@
             <div class="text-center">
                 Уже есть аккаунт? <a href="{% url 'loginUser' %}">Вход</a>
             </div>
+
         </div>
     </div>
 {% endblock %}
