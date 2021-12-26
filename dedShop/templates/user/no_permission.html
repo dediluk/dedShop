@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Нет прав
+{% endblock %}
+
+{% block content %}
+    У вас нет доступа к данной странице.
+
+    {% if not user.is_authenticated %}
+        <a href="{% url 'loginUser' %}">Войти</a>
+    {% else %}
+        <p>Вернуться на <a href="{% url 'index' %}">главную</a></p>
+    {% endif %}
+{% endblock %}

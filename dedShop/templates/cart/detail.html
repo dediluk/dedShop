@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Your shopping cart
+{% endblock %}
+
+{% block content %}
+{#    {% for product in cart %}#}
+{#        {{ product.product }}#}
+{#        {{ product.quantity }}#}
+{#        {{ product.price }}#}
+{#        {{ product.product.total_price  }}#}
+{#        <a href="{% url "cart_remove" product.product.id%}">Удалить</a>#}
+{#    {% endfor %}#}
+{#    {{ cart.get_total_price }}#}
+    <h1>Ваша корзина</h1>
+    <div class="cart">
+    {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+            Ваша корзина:
+            <a href="{% url "cart_detail" %}">
+                {{ total_items }} item{{ total_items|pluralize }},
+                ${{ cart.get_total_price }}
+            </a>
+        {% else %}
+            Ваша корзина пуста
+        {% endif %}
+    {% endwith %}
+</div>
+    <table class="cart">
+        <thead>
+        <tr>
+            <th>Товар</th>
+            <th>Количество</th>
+            <th>Удалить</th>
+            <th>Цена за ед.</th>
+            <th>Цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="
+                                {% if product.image %}
+                                    {{ product.image.url }}
+                                {% else %}
+{#                                    {% static "img/no_image.png" %}#}
+                                {% endif %}">
+                        </a>
+                    </td>
+                    <td>{{ item.product }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td><a href="{% url "cart_remove" product.id %}">Удалить</a></td>
+                    <td class="num">${{ item.price }}</td>
+                    <td class="num">${{ item.total_price }}</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Итого</td>
+            <td colspan="4"></td>
+            <td class="num">{{ cart.get_total_price }} р.</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+                <a href="{% url "index" %}" class="button light">Продолжить покупки</a>
+        <a href="{% url 'order_create' %}" class="button">Заказать</a>
+    </p>
+{% endblock %}
